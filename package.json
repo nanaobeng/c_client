@@ -1,0 +1,55 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@uiw/react-md-editor": "^1.14.5",
+    "context": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "downloadjs": "^1.4.7",
+    "draft-js": "^0.11.7",
+    "file-saver": "^2.0.5",
+    "js-file-download": "^0.4.12",
+    "moment": "^2.29.1",
+    "multer": "^1.4.2",
+    "node-sass": "^5.0.0",
+    "query-string": "^6.13.7",
+    "react": "^17.0.1",
+    "react-context": "0.0.3",
+    "react-dom": "^17.0.1",
+    "react-dropzone": "^11.2.4",
+    "react-external-link": "^1.1.1",
+    "react-native-binary-file": "^1.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-rte": "^0.16.3",
+    "react-scripts": "4.0.0",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
