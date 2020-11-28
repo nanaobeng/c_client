@@ -4,6 +4,7 @@ import Footer from './Footer';
 
 import {Link} from 'react-router-dom'
 import logo from '../images/logo.png'
+import Menu from './Menu'
 import { signout,isAuthenticated } from '../auth';
 import {ExternalLink} from 'react-external-link'
 
@@ -12,83 +13,7 @@ const Services = ({history}) => {
     return (
     <div >
 
-        <div className="row">
-        <div className="col-12">
-  <header id="header" class="fixed-top header-transparent">
-  <div class="container d-flex align-items-center">
-
-<h1 class="logo mr-auto"><img className="img-fluid" src={logo}/></h1>
-
-
-
-{!isAuthenticated() && (<nav class="nav-menu d-none d-lg-block">
-  <ul>
-    <li ><Link to="/"> Home</Link></li>
-    <li><Link to="/about-us"> About</Link></li>
-    <li class="active"><Link to="/services"> Services</Link></li>
-    <li><Link to="/team"> Team</Link></li>
-    <li><Link to="/credentials"> Credentials</Link></li>
-    <li class="drop-down"><a href="">Insights</a>
-            <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
-          
-              <li><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li><Link to="/insights/newsletters"> Newsletters</Link></li>
-             
-            </ul>
-          </li>
-          <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-    <li ><Link to="/contact"> Contact Us</Link></li>
-  
-
-  </ul>
-</nav>)}
-
-
-{isAuthenticated() && ( <nav class="nav-menu d-none d-lg-block">
-  <ul>
-    <li ><Link to="/"> Home</Link></li>
-    <li><Link to="/about-us"> About</Link></li>
-    <li class="active"><Link to="/services"> Services</Link></li>
-    <li><Link to="/team"> Team</Link></li>
-    <li><Link to="/credentials"> Credentials</Link></li>
-    <li class="drop-down"><a href="">Insights</a>
-            <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
-          
-              <li><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li><Link to="/insights/newsletters"> Newsletters</Link></li>
-             
-            </ul>
-          </li>
-          <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-    <li ><Link to="/contact"> Contact Us</Link></li>
-   
-          <li ><Link to="/admin/dashboard"> Dashboard</Link></li>
-          <li>
-           <Link    onClick={() => signout(() => {
-               history.push('/')
-           })}>
-             <span>Signout</span>
-           </Link>
-       </li>
-  
-
-  </ul>
-</nav>)}
-
-</div>
-  </header>
-
-    
-    <section id="hero2" class="d-flex align-items-center justify-content-center">
-    <div class="container position-relative">
-<h1> Our Services</h1>
-    
-    </div>
-  </section>
-  </div>
-        </div>
+<Menu/>
 
 
     <br/>
@@ -106,7 +31,7 @@ const Services = ({history}) => {
           <div class="col-md-6 col-sm-12">
             <img src="https://img.freepik.com/free-photo/coworkers-team-brainstorming_53876-65479.jpg?size=626&ext=jpg" class="img-fluid" alt=""/>
           </div>
-          <div class="col-6 pt-4 pt-lg-0" >
+          <div class="col-md-6 col-sm-12 pt-4 pt-lg-0" >
             <br/>
             <br/>
             <h3 style={{color:'#C5303C'}}>A Culture of Team Work and Collaboration</h3>
@@ -114,7 +39,7 @@ const Services = ({history}) => {
             We a full service advisory and investment banking firm offering two major services.
             </p>
             <div class="row pt-4">
-              <div class="col-md-6  ">
+              <div class="col-lg-6 col-md-12 col-sm-12 ">
                 <div className="row p-1">
                   <div className="col-4 ">
                   <span class="material-icons" style={{fontSize:'100px',color:'#C5303C'}}>
@@ -133,7 +58,7 @@ const Services = ({history}) => {
                
                
               </div>
-              <div class="col-md-6 ">
+              <div class="col-lg-6 col-md-12 col-sm-12">
               <div className="row p-1">
                   <div className="col-4">
                   <span class="material-icons" style={{fontSize:'100px',color:'#C5303C'}}>
@@ -190,7 +115,7 @@ const Services = ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0',color:'#C5303C'}}>
-                     <Link style={{color:'#C5303C'}} to="/service/3">  Read more</Link>
+                     <ExternalLink style={{color:'#C5303C'}} href="/service/3" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
             </div>
         </div>
@@ -210,7 +135,7 @@ const Services = ({history}) => {
         <div class="card serv products" style={{borderColor : '#C5303C'}}>
             <div class="card-body" style={{height: '250px'}}>
                 <h2>Corporate Finance</h2>
-                <div style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
+                <div class="divider" style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
                 <div className="container">
                 <div class="row">
                     <br></br>
@@ -222,9 +147,9 @@ const Services = ({history}) => {
                 </div>
                 <div class="pb-3"  style={{position : 'absolute' ,bottom   : '0'}}>
                     
-                    <Link  to="/corporate-finance">
-       <Link style={{color:'#C5303C'}} to="/service/1">  Read more</Link>
-            </Link>
+                  
+       <ExternalLink style={{color:'#C5303C'}} href="/service/1"  className="txt" target="_self">  Read more</ExternalLink>
+          
                     
                     
                 </div>
@@ -239,7 +164,7 @@ const Services = ({history}) => {
         <div class="card serv products" style={{borderColor : '#C5303C'}}>
             <div class="card-body" style={{height: '250px'}}>
                 <h2>Structured Finance</h2>
-                <div style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
+                <div  class="divider" style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
                 <div className="container">
                 <div class="row">
                     <br></br>
@@ -250,7 +175,7 @@ const Services = ({history}) => {
                 
                 </div>
                 <div class="pb-3"  style={{position : 'absolute' ,bottom   : '0'}}>
-                  <Link  style={{color:'#C5303C'}} to="/service/2">  Read more</Link>
+                  <ExternalLink  style={{color:'#C5303C'}} href="/service/2"  className="txt" target="_self">  Read more</ExternalLink>
                 </div>
             </div>
         </div>
@@ -263,7 +188,7 @@ const Services = ({history}) => {
         <div class="card serv products" style={{borderColor : '#C5303C'}}>
             <div class="card-body" style={{height: '250px'}}>
                 <h2>PPP Solutions</h2>
-                <div style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
+                <div  class="divider" style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
                 <div className="container">
                 <div class="row">
                     <br></br>
@@ -274,7 +199,7 @@ const Services = ({history}) => {
                 
                 </div>
                 <div class="pb-3"  style={{position : 'absolute' ,bottom   : '0'}}>
-                   <Link style={{color:'#C5303C'}} to="/service/5">  Read more</Link>
+                   <ExternalLink style={{color:'#C5303C'}} href="/service/5"  className="txt" target="_self">  Read more</ExternalLink>
                 </div>
             </div>
         </div>
@@ -288,7 +213,7 @@ const Services = ({history}) => {
         <div class="card serv products" style={{borderColor : '#C5303C'}}>
             <div class="card-body" style={{height: '250px'}}>
                 <h2>Mergers & Acquisitions</h2>
-                <div style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
+                <div class="divider" style={{width:'40px', borderStyle : 'solid' , borderColor:'#C5303C'}}></div>
                 <div className="container">
                 <div class="row">
                     <br></br>
@@ -299,7 +224,7 @@ const Services = ({history}) => {
                 
                 </div>
                 <div class="pb-3"  style={{position : 'absolute' ,bottom   : '0'}}>
-                  <Link style={{color:'#C5303C'}} to="/service/4">  Read more</Link>
+                  <ExternalLink style={{color:'#C5303C'}} href="/service/4"  className="txt" target="_self">  Read more</ExternalLink>
                 </div>
             </div>
         </div>

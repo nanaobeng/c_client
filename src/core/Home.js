@@ -4,7 +4,9 @@ import header_image from '../images/header_image.jpg'
 import contact_image from '../images/contact.jpg'
 import Footer from './Footer'
 import logo from '../images/logo.png'
-
+import Menu from './Menu'
+import map from '../images/map.png'
+import { useGoogleMaps } from "react-hook-google-maps";
 import {signout, isAuthenticated } from '../auth';
 import structured from '../images/services/structured.jpg'
 import corporate from '../images/services/corporate.jpg'
@@ -14,7 +16,15 @@ import projectfinance from '../images/services/projectfinance.jpg'
 import {ExternalLink} from 'react-external-link'
 const Home= ({history}) => {
 
-
+  const { ref, map, google } = useGoogleMaps(
+    // Use your own API key, you can get one from Google (https://console.cloud.google.com/google/maps-apis/overview)
+    "AIzaSyBF2g3qMQx8deDksAKn9nEfuFegQZ5Fh8g",
+    // NOTE: even if you change options later
+    {
+      center: { lat: 5.6140792192192, lng: -0.17458232499999946 },
+      zoom: 14,
+    },
+  );
 
   var divStyle = {
     backgroundImage: 'url(' + header_image + ')',
@@ -51,22 +61,22 @@ const Home= ({history}) => {
 
 {!isAuthenticated() && ( <nav class="nav-menu d-none d-lg-block">
   <ul>
-    <li class="active"><Link to="/"> Home</Link></li>
+    <li class="active"><Link href="/" target="_self"> Home</Link></li>
     <li><ExternalLink href="/about-us" target="_self"> About</ExternalLink></li>
-    <li><Link to="/services"> Services</Link></li>
+    <li><ExternalLink href="/services" target="_self"> Services</ExternalLink></li>
     <li><ExternalLink href="/team" target="_self"> Team</ExternalLink></li>
     <li><ExternalLink href="/credentials" target="_self"> Credentials</ExternalLink></li>
     <li class="drop-down"><a href="">Insights</a>
             <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
+              <li><ExternalLink href="/insights/knowledge_bank" target="_self"> Knowledge Bank</ExternalLink></li>
           
-              <li><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li><Link to="/insights/newsletters"> Newsletters</Link></li>
+              <li><ExternalLink href="/insights/csr" target="_self"> CSR Projects</ExternalLink></li>
+              <li><ExternalLink href="/insights/newsletters" target="_self"> Newsletters</ExternalLink></li>
              
             </ul>
           </li>
           <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-    <li ><Link to="/contact"> Contact Us</Link></li>
+    <li ><ExternalLink href="/contact" target="_self"> Contact Us</ExternalLink></li>
     
   
 
@@ -75,24 +85,24 @@ const Home= ({history}) => {
 {isAuthenticated() && ( <nav class="nav-menu d-none d-lg-block">
   
   <ul>
-    <li class="active"><Link to="/"> Home</Link></li>
-    <li><Link to="/about-us"> About</Link></li>
-    <li><Link to="/services"> Services</Link></li>
-    <li><Link to="/team"> Team</Link></li>
-    <li><Link to="/credentials"> Credentials</Link></li>
+    <li class="active"><ExternalLink href="/" target="_self"> Home</ExternalLink></li>
+    <li><ExternalLink href="/about-us" target="_self"> About</ExternalLink></li>
+    <li><ExternalLink href="/services" target="_self"> Services</ExternalLink></li>
+    <li><ExternalLink href="/team" target="_self"> Team</ExternalLink></li>
+    <li><ExternalLink href="/credentials" target="_self"> Credentials</ExternalLink></li>
  
     <li class="drop-down"><a href="">Insights</a>
             <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
+              <li><ExternalLink href="/insights/knowledge_bank" target="_self"> Knowledge Bank</ExternalLink></li>
           
-              <li><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li><Link to="/insights/newsletters"> Newsletters</Link></li>
+              <li><ExternalLink href="/insights/csr" target="_self"> CSR Projects</ExternalLink></li>
+              <li><ExternalLink href="/insights/newsletters" target="_self"> Newsletters</ExternalLink></li>
              
             </ul>
           </li>
           <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-          <li ><Link to="/contact"> Contact Us</Link></li>
-          <li ><Link to="/admin/dashboard"> Dashboard</Link></li>
+          <li ><ExternalLink href="/contact" target="_self"> Contact Us</ExternalLink></li>
+          <li ><ExternalLink href="/admin/dashboard" target="_self"> Dashboard</ExternalLink></li>
 
           <li>
            <Link    onClick={() => signout(() => {
@@ -168,7 +178,7 @@ const Home= ({history}) => {
           <div class="col-md-6 col-sm-12">
             <img src="https://img.freepik.com/free-photo/coworkers-team-brainstorming_53876-65479.jpg?size=626&ext=jpg" class="img-fluid" alt=""/>
           </div>
-          <div class="col-6 pt-4 pt-lg-0" >
+          <div class="col-md-6 col-sm-12 pt-4 pt-lg-0" >
             <br/>
             <br/>
             <h3 style={{color:'#fff'}}>A Culture of Team Work and Collaboration</h3>
@@ -261,7 +271,7 @@ const Home= ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0'}}>
-                 <Link style={{color:'#C5303C'}} to="/service/3">  Read more</Link>
+                 <ExternalLink style={{color:'#C5303C'}} href="/service/3" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
          
     
@@ -286,7 +296,7 @@ const Home= ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0'}}>
-                <Link style={{color:'#C5303C'}} to="/service/1">  Read more</Link>
+                <ExternalLink style={{color:'#C5303C'}} href="/service/1" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
          
       </div>
@@ -306,7 +316,7 @@ const Home= ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0'}}>
-                   <Link style={{color:'#C5303C'}} to="/service/2">  Read more</Link>
+                   <ExternalLink style={{color:'#C5303C'}} href="/service/2" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
          
       </div>
@@ -332,7 +342,7 @@ const Home= ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0'}}>
-                   <Link style={{color:'#C5303C'}} to="/service/5">  Read more</Link>
+                   <ExternalLink style={{color:'#C5303C'}} href="/service/5" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
          
       </div>
@@ -362,7 +372,7 @@ const Home= ({history}) => {
                 
                 </div>
                 <div class="pb-3" style={{position : 'absolute' ,bottom   : '0'}}>
-                 <Link style={{color:'#C5303C'}} to="/service/4">  Read more</Link>
+                 <ExternalLink style={{color:'#C5303C'}} href="/service/4" className="txt" target="_self">  Read more</ExternalLink>
                 </div>
          
       </div>
@@ -379,13 +389,15 @@ const Home= ({history}) => {
 
 
   
-<div className="col-12 p-4">
-<div className="row p-4">
-  <div class="col-12 p-4" style={{backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcS8erqEli7GnZh27q7Y7ZpCyqg-EzRK-xr92A&usqp=CAU')"}}>
+<div className="col-12 ">
+ 
+<div className="row p-2">
+
+  <div class="col-12 p-4" style={{backgroundImage: "url('')"}}>
                             <div class="card " >
                                 <div class="card-body">
                                     <div className="row">
-                                        <div className="col-12">
+                                   <div className="col-12">
                                             <b style={{color:'#C5303C',fontSize:'25px'}}>Contact Us</b>
                                         </div>
                                     </div>
@@ -431,8 +443,12 @@ info@cnergyglobalholdings.com
         <br/>
       </div>
                                     </div>
-                                    <div className="row">
-                                    <div className="col-12 ">
+                                    <div className="row justify-content-center text-center">
+                                 <div className="col-md-4 col-xs-12 pt-4 pl-4 justify-content-center text-center col-sm-12">
+                                 <div className="justify-content-center text-center" ref={ref} style={{ width: '100%', height: 350 }} />;
+                                 </div>
+                                 
+                                    <div className="col-md-8 col-sm-12">
 
         
 <div className="row justify-content-center">
@@ -481,6 +497,7 @@ info@cnergyglobalholdings.com
 
   
 </div>
+
 <Footer/>
 
 </div>

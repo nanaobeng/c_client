@@ -32,9 +32,13 @@
   <script>
 $(document).ready(function(){
   $(".serv").hover(function(){
+    $(this).find( ".divider" ).css( "border-color", "#fff" )
+    $(this).find( ".txt" ).css( "color", "#fff" )
     $(this).css("background-color", "#C5303C");
     $(this).css("color", "#fff");
     }, function(){
+      $(this).find( ".divider" ).css( "border-color", "#C5303C" )
+      $(this).find( ".txt" ).css( "color", "#C5303C" )
     $(this).css("background-color", "#fff");
     $(this).css("color", "black");
   });

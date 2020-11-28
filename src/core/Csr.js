@@ -8,6 +8,7 @@ import Footer from './Footer'
 import moment from 'moment';
 import {signout, isAuthenticated } from '../auth';
 import {ExternalLink} from 'react-external-link'
+import Menu from './Menu'
 const Csr = ({history}) => {
     const[myFilters, setMyFilters] = useState({
         filters: { category: ['csr'] }
@@ -21,7 +22,8 @@ const Csr = ({history}) => {
     const [skip , setSkip ] = useState (0)
     const [size , setSize ] = useState (0)
     const [filteredResults, setfilteredResults] = useState ([])
-
+    let [loading,setLoading] = useState(false)
+    let  [csr_count,setCount] = useState(0)
 
 
     const loadFilteredResults = (newFilters) => {
@@ -35,6 +37,7 @@ const Csr = ({history}) => {
                 setfilteredResults(data.data)
                 setSize(data.size)
                 setSkip(0)
+                setLoading({loading : true})
             }
         })
     }
@@ -93,85 +96,9 @@ const Csr = ({history}) => {
 
     <div>
 
-<div className="row">
-        <div className="col-12">
-  <header id="header" class="fixed-top header-transparent">
-  <div class="container d-flex align-items-center">
+<Menu/>
 
-<h1 class="logo mr-auto"><img className="img-fluid" src={logo}/></h1>
-
-
-
-{!isAuthenticated() && (<nav class="nav-menu d-none d-lg-block">
-  <ul>
-    <li ><Link to="/"> Home</Link></li>
-    <li ><Link to="/about-us"> About</Link></li>
-    <li><Link to="/services"> Services</Link></li>
-    <li><Link to="/team"> Team</Link></li>
-    <li><Link to="/credentials"> Credentials</Link></li>
-    <li class="drop-down active"><a href="">Insights</a>
-            <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
-          
-              <li className="active"><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li ><Link to="/insights/newsletters"> Newsletters</Link></li>
-             
-            </ul>
-          </li>
-          <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-    <li ><Link to="/contact"> Contact Us</Link></li>
-
-  
-
-  </ul>
-</nav> )}
-
-
-
-{isAuthenticated() && ( <nav class="nav-menu d-none d-lg-block">
-  <ul>
-    <li ><Link to="/"> Home</Link></li>
-    <li><Link to="/about-us"> About</Link></li>
-    <li><Link to="/services"> Services</Link></li>
-    <li><Link to="/team"> Team</Link></li>
-    <li><Link to="/credentials"> Credentials</Link></li>
-    <li class="drop-down active"><a href="">Insights</a>
-            <ul>
-              <li><Link to="/insights/knowledge_bank"> Knowledge Bank</Link></li>
-          
-              <li className="active"><Link to="/insights/csr"> CSR Projects</Link></li>
-              <li ><Link to="/insights/newsletters"> Newsletters</Link></li>
-             
-            </ul>
-          </li>
-          <li><ExternalLink href="http://www.pppglobalconferences.org/">Events</ExternalLink></li>
-    <li ><Link to="/contact"> Contact Us</Link></li>
-
-          <li ><Link to="/admin/dashboard"> Dashboard</Link></li>
-          <li>
-           <Link    onClick={() => signout(() => {
-               history.push('/')
-           })}>
-             <span>Signout</span>
-           </Link>
-       </li>
-  
-
-  </ul>
-</nav>)}
-
-</div>
-  </header>
-
-    
-    <section id="hero2" class="d-flex align-items-center justify-content-center">
-    <div class="container position-relative">
-    <h1> CSR Projects</h1>
-    
-    </div>
-  </section>
-  </div>
-        </div>
+{loading ? 
             <div class="site-wrap">
             <div class="bg-light py-3">
   
@@ -206,6 +133,7 @@ const Csr = ({history}) => {
     </div>
   {filteredResults.map((insight,i)=> (
        insight.category === 'csr' && <div className="parent col-md-4 col-sm-6 p-4">
+           {insight.category === 'csr' && setCount(csr_count + 1)}
 
 <ShowImage item={insight} url="product" style={{width:'100%',height:'400px'}}/>
 <br/>
@@ -228,7 +156,7 @@ const Csr = ({history}) => {
 
 ))}  
 
-{filteredResults.length < 1 && (<div className="col-12 pt-4"> <b>There are currently no insights uplaoded.</b></div>)}
+{csr_count < 1 && (<div className="col-12 pt-4"> <b>There are currently no insights uploaded.</b></div>)}
 
 
         <hr/>
@@ -266,7 +194,33 @@ const Csr = ({history}) => {
                 
             </div>
 
+: <div class="container justify-content-center text-center p-4">
+<div className="row justify-content-center text-center p-4">
+    <div className="col-12 justify-content-center text-center p-4" style={{height:'100vh'}}>
 
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+                                        
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+<div class="spinner-grow text-danger"></div>
+
+</div>
+</div>
+</div>}
 
       <Footer/>  
 </div>
